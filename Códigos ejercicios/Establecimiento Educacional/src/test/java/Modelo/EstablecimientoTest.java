@@ -1,5 +1,6 @@
 package Modelo;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -61,7 +62,7 @@ public class EstablecimientoTest {
     @Test
     public void agregarEstudiante() {
         colegio.agregarEstudiante("Leticia", "camino a relun 9km", "190000000",fechaIncorporacion, 6.2);
-        assertEquals(colegio.getEstudiantes(),colegio.getEstudiantes());
+
     }
 
     @Test
