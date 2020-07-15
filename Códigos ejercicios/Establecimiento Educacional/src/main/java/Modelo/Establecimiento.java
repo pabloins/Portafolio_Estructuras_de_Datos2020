@@ -23,40 +23,20 @@ public class Establecimiento {
         return estudiantes;
     }
 
-    public void setEstudiantes(Stack<Estudiante> estudiantes) {
-        this.estudiantes = estudiantes;
-    }
-
     public Queue<Estudiante> getListaEsperaEstudiantes() {
         return listaEsperaEstudiantes;
-    }
-
-    public void setListaEsperaEstudiantes(Queue<Estudiante> listaEsperaEstudiantes) {
-        this.listaEsperaEstudiantes = listaEsperaEstudiantes;
     }
 
     public Stack<Profesor> getProfesores() {
         return profesores;
     }
 
-    public void setProfesores(Stack<Profesor> profesores) {
-        this.profesores = profesores;
-    }
-
     public Queue<Profesor> getListaEsperaProfesores() {
         return listaEsperaProfesores;
     }
 
-    public void setListaEsperaProfesores(Queue<Profesor> listaEsperaProfesores) {
-        this.listaEsperaProfesores = listaEsperaProfesores;
-    }
-
     public List<PersonalAdministrativo> getPersonal() {
         return personal;
-    }
-
-    public void setPersonal(List<PersonalAdministrativo> personal) {
-        this.personal = personal;
     }
 
     public void agregarEstudiante(String nombre, String direccion, String rut, Date fechaIncorporacion, double promedio){
