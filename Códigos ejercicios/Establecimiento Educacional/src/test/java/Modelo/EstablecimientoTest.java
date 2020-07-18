@@ -13,6 +13,7 @@ import java.util.*;
 public class EstablecimientoTest {
 
     Establecimiento colegio;
+    Establecimiento colegioVacio;
     Date fechaIncorporacion;
     String mensajeEstudiante;
     String mensajeEstudianteAgregandoAlumno;
@@ -26,6 +27,7 @@ public class EstablecimientoTest {
     @Before
     public void setUp() throws Exception {
         colegio = new Establecimiento();
+        colegioVacio = new Establecimiento();
         fechaIncorporacion = new Date(2020,Calendar.JANUARY,27);
         colegio.agregarEstudiante("Rodrigo", "Francisco Bilbao 600", "230000000",fechaIncorporacion, 5.8);
         colegio.agregarEstudiante("Pepe", "camino a relun 9km", "190000000",fechaIncorporacion, 6.1);
@@ -113,7 +115,6 @@ public class EstablecimientoTest {
     @Test
     public void agregarEstudiante() {
         colegio.agregarEstudiante("Leticia", "camino a relun 9km", "190000000",fechaIncorporacion, 6.2);
-        PrintStream save_out = System.out;
         final ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
         colegio.imprimirEstudiantes(colegio.getEstudiantes(),colegio.getListaEsperaEstudiantes());
@@ -128,7 +129,6 @@ public class EstablecimientoTest {
         colegio.agregarEstudianteListaEspera("Agustina", "camino a relun 9km", "190000000",fechaIncorporacion, 4.7);
         colegio.agregarEstudianteListaEspera("Carlos", "camino a relun 9km", "190000000",fechaIncorporacion, 5.9);
         colegio.agregarEstudianteListaEspera("Fernanda", "camino a relun 9km", "190000000",fechaIncorporacion, 6.2);
-        PrintStream save_out = System.out;
         final ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
         colegio.imprimirEstudiantes(colegio.getEstudiantes(),colegio.getListaEsperaEstudiantes());
@@ -137,7 +137,6 @@ public class EstablecimientoTest {
 
     @Test
     public void imprimirEstudiantes() {
-        PrintStream save_out = System.out;
         final ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
         colegio.imprimirEstudiantes(colegio.getEstudiantes(),colegio.getListaEsperaEstudiantes());
@@ -151,7 +150,6 @@ public class EstablecimientoTest {
     public void agregarProfesor() {
         colegio.agregarProfesor("Berta",Especialidad.HISTORIA,8);
         colegio.agregarProfesor("Sandro",Especialidad.MATEMATICA,8);
-        PrintStream save_out = System.out;
         final ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
         colegio.imprimirProfesores(colegio.getProfesores(),colegio.getListaEsperaProfesores());
@@ -162,7 +160,6 @@ public class EstablecimientoTest {
     public void agregarProfesorListaEspera() {
         colegio.agregarProfesorListaEspera("Berta",Especialidad.HISTORIA,8);
         colegio.agregarProfesorListaEspera("Sandro",Especialidad.MATEMATICA,8);
-        PrintStream save_out = System.out;
         final ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
         colegio.imprimirProfesores(colegio.getProfesores(),colegio.getListaEsperaProfesores());
@@ -171,7 +168,6 @@ public class EstablecimientoTest {
 
     @Test
     public void imprimirProfesores() {
-        PrintStream save_out = System.out;
         final ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
         colegio.imprimirProfesores(colegio.getProfesores(),colegio.getListaEsperaProfesores());
@@ -186,7 +182,6 @@ public class EstablecimientoTest {
         colegio.agregarPersonalAdministrativo("Coraje", "Secretario");
         colegio.agregarPersonalAdministrativo("Muriel", "Director");
         colegio.agregarPersonalAdministrativo("Justo", "Jefe UTP");
-        PrintStream save_out = System.out;
         final ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
         colegio.imprimirPersonal(colegio.getPersonal());
@@ -195,13 +190,16 @@ public class EstablecimientoTest {
 
     @Test
     public void imprimirPersonal() {
-        PrintStream save_out = System.out;
         final ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
         colegio.imprimirPersonal(colegio.getPersonal());
         assertEquals(mensajePersonal,out.toString());
+    }
 
-        exceptionRule.expect(NullPointerException.class);//null
-        colegio.imprimirPersonal(null);
+    @Test
+    public void imprimirPersonalVacio(){
+        exceptionRule.expect(NullPointerException.class);
+        exceptionRule.expectMessage("No hay Personal Administrativo");
+        colegioVacio.imprimirPersonal(colegioVacio.getPersonal());
     }
 }

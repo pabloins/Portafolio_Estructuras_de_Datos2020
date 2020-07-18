@@ -113,17 +113,14 @@ public class Establecimiento {
     }
 
     public static void imprimirPersonal(List<PersonalAdministrativo> personal){
-        if(personal == null){
-            throw new NullPointerException();
-        }
-        if (personal.size() != 0){
-            System.out.println("Personal Administrativo:");
-            Iterator<PersonalAdministrativo> personalAdministrativoIterator = personal.iterator();
-            while (personalAdministrativoIterator.hasNext()) {
-                System.out.println(personalAdministrativoIterator.next().toString());
-            }
+        if(personal.isEmpty()){
+            throw new NullPointerException("No hay Personal Administrativo");
         } else {
-            System.out.println("No hay personal inscritos");
+            System.out.println("Personal Administrativo:");
+            Iterator<PersonalAdministrativo> iterator = personal.iterator();
+            while (iterator.hasNext()) {
+                System.out.println(iterator.next().toString());
+            }
         }
     }
 }
