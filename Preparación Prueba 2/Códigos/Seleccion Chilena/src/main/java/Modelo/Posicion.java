@@ -1,0 +1,12 @@
+package Modelo;
+
+public enum Posicion {
+    ARQUERO,
+    LATERAL,
+    DEFENSACENTRAL,
+    VOLANTEDEFENSIVO,
+    VOLANTEMIXTO,
+    VOLANTEOFENSIVO,
+    DELANTEROEXTREMO,
+    DELANTERODEAREA;
+}
