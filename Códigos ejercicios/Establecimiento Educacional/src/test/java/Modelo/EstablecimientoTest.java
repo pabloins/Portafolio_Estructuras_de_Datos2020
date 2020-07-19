@@ -118,7 +118,7 @@ public class EstablecimientoTest {
         final ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
         colegio.imprimirEstudiantes(colegio.getEstudiantes(),colegio.getListaEsperaEstudiantes());
-        assertEquals(mensajeEstudianteAgregandoAlumno,out.toString());
+        assertEquals(mensajeEstudianteAgregandoAlumno,out.toString())
     }
 
     @Test
