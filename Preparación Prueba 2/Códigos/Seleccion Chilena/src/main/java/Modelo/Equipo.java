@@ -1,6 +1,5 @@
 package Modelo;
 
-import javax.swing.text.html.HTMLDocument;
 import java.util.*;
 
 public class Equipo {
@@ -35,6 +34,14 @@ public class Equipo {
 
     public boolean agregarCuerpoTecnico(DireccionTecnica direccionTecnica){
         return cuerpoTecnico.add(direccionTecnica);
+    }
+
+    public boolean eliminarJugador(Jugador jugador){
+        return jugadores.remove(jugador, jugador.getNumeroCamiseta());
+    }
+
+    public boolean eliminarCuerpoTecnico(DireccionTecnica direccionTecnica){
+        return cuerpoTecnico.remove(direccionTecnica);
     }
 
     public boolean buscarJugador(Jugador jugador){

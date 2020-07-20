@@ -18,6 +18,7 @@ public class EquipoTest {
     private String plantel;
     private String plantel1;
     private String cuerpoTecnico;
+    private String cuerpoTecnico1;
 
     @Before
     public void preparacion() throws Exception {
@@ -72,6 +73,14 @@ public class EquipoTest {
                 "DireccionTecnica{nombre= Nestor, apellido= Lo Tártaro, ocupacion= PERPARADORDEARQUERO}\r\n" +
                 "DireccionTecnica{nombre= Carlos, apellido= Velasco, ocupacion= PREPARADORFISICO}\r\n" +
                 "DireccionTecnica{nombre= Wilson, apellido= Vásquez, ocupacion= UTILERO}\r\n";
+        cuerpoTecnico1 = "Cuerpo Técnico \r\n" +
+                "DireccionTecnica{nombre= Mario, apellido= Salas, ocupacion= ENTRENADOR}\r\n" +
+                "DireccionTecnica{nombre= Fernando, apellido= Yáñez, ocupacion= MEDICO}\r\n" +
+                "DireccionTecnica{nombre= Pedro, apellido= Oñate, ocupacion= KINESIOLOGO}\r\n" +
+                "DireccionTecnica{nombre= Reinaldo, apellido= Rueda, ocupacion= ENTRENADOR}\r\n" +
+                "DireccionTecnica{nombre= Nestor, apellido= Lo Tártaro, ocupacion= PERPARADORDEARQUERO}\r\n" +
+                "DireccionTecnica{nombre= Carlos, apellido= Velasco, ocupacion= PREPARADORFISICO}\r\n" +
+                "DireccionTecnica{nombre= Wilson, apellido= Vásquez, ocupacion= UTILERO}\r\n";
     }
 
     @Rule
@@ -88,8 +97,12 @@ public class EquipoTest {
 
     @Test
     public void agregarCuerpoTecnico() {
+        seleccion.eliminarCuerpoTecnico(new DireccionTecnica("Reinaldo","Rueda",Ocupacion.ENTRENADOR));
         seleccion.agregarCuerpoTecnico(new DireccionTecnica("Mario","Salas",Ocupacion.ENTRENADOR));
-        Assert.assertTrue(true);
+        final ByteArrayOutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+        seleccion.imprimirCuerpoTecnico(seleccion.getCuerpoTecnico());
+        assertEquals(cuerpoTecnico1,out.toString());
     }
 
     @Test
