@@ -1,17 +1,16 @@
 package ed.dci;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Stack;
 
 public class Mazo {
 
-    private List<Carta> cartas;
+    private Stack<Carta> cartas;
 
     public Mazo() {
-        this.cartas = new ArrayList<Carta>();
+        this.cartas = new Stack<Carta>();
     }
 
-    public Mazo(List<Carta> cartas) {
+    public Mazo(Stack<Carta> cartas) {
         this.cartas = cartas;
     }
 
@@ -31,11 +30,11 @@ public class Mazo {
         }
     }
 
-    public List<Carta> getCartas() {
+    public Stack<Carta> getCartas() {
         return cartas;
     }
 
-    public void setCartas(List<Carta> cartas) {
+    public void setCartas(Stack<Carta> cartas) {
         this.cartas = cartas;
     }
 }

@@ -6,8 +6,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Stack;
 
 public class MazoTest {
 
@@ -16,7 +15,7 @@ public class MazoTest {
 
     @Before
     public void preparacion(){
-        List<Carta> cartas = new ArrayList<>();
+        Stack<Carta> cartas = new Stack<Carta>();
         cartas.add(new Carta(TipoCarta.CORAZON,RangoCarta.ACE));
         cartas.add(new Carta(TipoCarta.DIAMANTE,RangoCarta.ACE));
         cartas.add(new Carta(TipoCarta.PICA,RangoCarta.ACE));
