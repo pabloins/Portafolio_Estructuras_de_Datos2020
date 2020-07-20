@@ -10,8 +10,8 @@ public class Mazo {
         this.cartas = new Stack<Carta>();
     }
 
-    public Mazo(Stack<Carta> cartas) {
-        this.cartas = cartas;
+    public boolean agregarCarta(Carta carta){
+        return cartas.add(carta);
     }
 
     public Carta getCarta(int i){

@@ -6,8 +6,6 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import java.util.Stack;
-
 public class MazoTest {
 
     private Mazo mazoVacio;
@@ -15,13 +13,12 @@ public class MazoTest {
 
     @Before
     public void preparacion(){
-        Stack<Carta> cartas = new Stack<Carta>();
-        cartas.add(new Carta(TipoCarta.CORAZON,RangoCarta.ACE));
-        cartas.add(new Carta(TipoCarta.DIAMANTE,RangoCarta.ACE));
-        cartas.add(new Carta(TipoCarta.PICA,RangoCarta.ACE));
-        cartas.add(new Carta(TipoCarta.TREBOL,RangoCarta.ACE));
+        mazo = new Mazo();
         mazoVacio = new Mazo();
-        mazo = new Mazo(cartas);
+        mazo.agregarCarta(new Carta(TipoCarta.CORAZON,RangoCarta.ACE));
+        mazo.agregarCarta(new Carta(TipoCarta.DIAMANTE,RangoCarta.ACE));
+        mazo.agregarCarta(new Carta(TipoCarta.PICA,RangoCarta.ACE));
+        mazo.agregarCarta(new Carta(TipoCarta.TREBOL,RangoCarta.ACE));
     }
 
     @Rule
