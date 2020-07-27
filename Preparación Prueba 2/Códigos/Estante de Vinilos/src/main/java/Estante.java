@@ -23,11 +23,7 @@ public class Estante {
     public boolean buscarVinilo(Vinilo vinilo){
         if(vinilos.isEmpty()){
             throw new NullPointerException("No hay vinilos en el estante");
-        } else if(vinilos.contains(vinilo)){
-            return true;
-        } else {
-            return false;
-        }
+        } else return vinilos.contains(vinilo);
     }
 
     public void venderVinilo(Vinilo vinilo){

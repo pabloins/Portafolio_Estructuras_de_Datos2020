@@ -13,19 +13,23 @@ import static org.junit.Assert.*;
 
 public class EstanteTest {
 
-    private Estante estante;
-    private Estante estanteVacio;
-    private Date fechaPublicacion;
-    private String vinilosDisponibles;
+    Estante estante;
+    Estante estanteVacio;
+    Date fechaPublicacion;
+    String vinilosDisponibles;
+    Vinilo vinilo1;
+    Vinilo vinilo2;
 
     @Before
     public void preparacion() {
         estante = new Estante();
         estanteVacio = new Estante();
         fechaPublicacion = new Date(2019, Calendar.AUGUST,30);
-        estante.agregarVinilo(new Vinilo("Tool",fechaPublicacion,"Fear Inoculum",38900));
+        vinilo1 = new Vinilo("Tool",fechaPublicacion,"Fear Inoculum",38900);
+        estante.agregarVinilo(vinilo1);
         fechaPublicacion = new Date(2016,Calendar.AUGUST,12);
-        estante.agregarVinilo(new Vinilo("Kuervos del Sur",fechaPublicacion,"El vuelo del Pillán",26500));
+        vinilo2 = new Vinilo("Kuervos del Sur",fechaPublicacion,"El vuelo del Pillán",26500);
+        estante.agregarVinilo(vinilo2);
         vinilosDisponibles = "Vinilos: \r\n" +
                 "Vinilo{nombreArtista='Kuervos del Sur', fechaPublicacion=Sat Aug 12 00:00:00 CLT 3916, nombreVinilo='El vuelo del Pillán', valorVinilo=26500.0}\r\n" +
                 "Vinilo{nombreArtista='Tool', fechaPublicacion=Sat Aug 30 00:00:00 CLT 3919, nombreVinilo='Fear Inoculum', valorVinilo=38900.0}\r\n";
@@ -39,15 +43,14 @@ public class EstanteTest {
         fechaPublicacion = new Date(2016,Calendar.MARCH,11);
         Vinilo viniloNuevo = new Vinilo("Polyphia",fechaPublicacion,"Renaissance",19662);
         estante.agregarVinilo(viniloNuevo);
-        estante.buscarVinilo(viniloNuevo);
-        Assert.assertTrue(true);
+        Assert.assertTrue(estante.buscarVinilo(viniloNuevo));
     }
 
     @Test
     public void buscarVinilo() {
-        Vinilo vinilo = new Vinilo("Kuervos del Sur",fechaPublicacion,"El vuelo del Pillán",26500);
-        estante.buscarVinilo(vinilo);
-        Assert.assertTrue(true);
+        Vinilo viniloNuevo = new Vinilo("Polyphia",fechaPublicacion,"Renaissance",19662);
+        Assert.assertTrue(estante.buscarVinilo(vinilo1));
+        Assert.assertFalse(estante.buscarVinilo(viniloNuevo));
     }
 
     @Test
@@ -60,9 +63,8 @@ public class EstanteTest {
 
     @Test
     public void venderVinilo() {
-        Vinilo vinilo = new Vinilo("Tool",fechaPublicacion,"Fear Inoculum",38900);
-        estante.venderVinilo(vinilo);
-        Assert.assertTrue(true);
+        estante.venderVinilo(vinilo1);
+        Assert.assertFalse(estante.buscarVinilo(vinilo1));
     }
 
     @Test
