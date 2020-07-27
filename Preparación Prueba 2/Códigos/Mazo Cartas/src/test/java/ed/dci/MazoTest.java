@@ -8,16 +8,20 @@ import org.junit.rules.ExpectedException;
 
 public class MazoTest {
 
-    private Mazo mazoVacio;
-    private Mazo mazo;
+    Mazo mazoVacio;
+    Mazo mazo;
+    Carta carta;
+    Carta carta1;
 
     @Before
     public void preparacion(){
         mazo = new Mazo();
         mazoVacio = new Mazo();
+        carta = new Carta(TipoCarta.PICA,RangoCarta.ACE);
+        carta1 = new Carta(TipoCarta.PICA, RangoCarta.JACK);
         mazo.agregarCarta(new Carta(TipoCarta.CORAZON,RangoCarta.ACE));
         mazo.agregarCarta(new Carta(TipoCarta.DIAMANTE,RangoCarta.ACE));
-        mazo.agregarCarta(new Carta(TipoCarta.PICA,RangoCarta.ACE));
+        mazo.agregarCarta(carta);
         mazo.agregarCarta(new Carta(TipoCarta.TREBOL,RangoCarta.ACE));
     }
 
@@ -25,28 +29,31 @@ public class MazoTest {
     public ExpectedException exceptionRule = ExpectedException.none();
 
     @Test
-    public void getCarta() {
-        Carta carta = new Carta(TipoCarta.PICA,RangoCarta.ACE);
-        Assert.assertEquals(carta.toString(), mazo.getCarta(2).toString());
+    public void obtenerCarta() {
+        Assert.assertTrue(mazo.obtenerCarta(carta));
+        Assert.assertFalse(mazo.obtenerCarta(carta1));
     }
 
     @Test
-    public void getCartaVacia(){
-        exceptionRule.expect(IndexOutOfBoundsException.class);
+    public void obtenerCartaVacio(){
+        Carta carta = new Carta(TipoCarta.PICA,RangoCarta.ACE);
+        exceptionRule.expect(NullPointerException.class);
         exceptionRule.expectMessage("No alcanzan las cartas");
-        mazoVacio.getCarta(2);
+        mazoVacio.obtenerCarta(carta);
     }
 
     @Test
     public void deleteCarta() {
         Carta carta = new Carta(TipoCarta.PICA,RangoCarta.ACE);
-        Assert.assertEquals(carta.toString(),mazo.getCarta(2).toString());
+        mazo.deleteCarta(carta);
+        Assert.assertFalse(mazo.getCartas().contains(carta));
     }
 
     @Test
     public void deleteCartaVacia(){
-        exceptionRule.expect(IndexOutOfBoundsException.class);
+        Carta carta = new Carta(TipoCarta.PICA,RangoCarta.ACE);
+        exceptionRule.expect(NullPointerException.class);
         exceptionRule.expectMessage("No puedes eliminar esa carta porque no hay suficientes cartas");
-        mazoVacio.deleteCarta(2);
+        mazoVacio.deleteCarta(carta);
     }
 }

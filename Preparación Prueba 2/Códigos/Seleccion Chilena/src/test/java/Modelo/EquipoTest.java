@@ -13,17 +13,21 @@ import static org.junit.Assert.assertEquals;
 
 public class EquipoTest {
 
-    private Equipo seleccion;
-    private Equipo seleccionVacio;
-    private String plantel;
-    private String plantel1;
-    private String cuerpoTecnico;
-    private String cuerpoTecnico1;
+    Equipo seleccion;
+    Equipo seleccionVacio;
+    String plantel;
+    String plantel1;
+    String cuerpoTecnico;
+    String cuerpoTecnico1;
+    Jugador jorgeValdivia;
+    Jugador marceloSalas;
 
     @Before
     public void preparacion() throws Exception {
         seleccion = new Equipo();
         seleccionVacio = new Equipo();
+        jorgeValdivia = new Jugador("Jorge","Valdivia",10,Posicion.VOLANTEOFENSIVO);
+        marceloSalas = new Jugador("Marcelo","Salas",11,Posicion.DEFENSACENTRAL) ;
         seleccion.agregarJugador(new Jugador("Claudio","Bravo",1,Posicion.ARQUERO));
         seleccion.agregarJugador(new Jugador("Mauricio","Isla",4,Posicion.LATERAL));
         seleccion.agregarJugador(new Jugador("Gary","Medel",17,Posicion.DEFENSACENTRAL));
@@ -32,7 +36,7 @@ public class EquipoTest {
         seleccion.agregarJugador(new Jugador("Marcelo","Díaz",21,Posicion.VOLANTEDEFENSIVO));
         seleccion.agregarJugador(new Jugador("Charles","Aranguiz",20,Posicion.VOLANTEMIXTO));
         seleccion.agregarJugador(new Jugador("Arturo","Vidal",8,Posicion.VOLANTEMIXTO));
-        seleccion.agregarJugador(new Jugador("Jorge","Valdivia",10,Posicion.VOLANTEOFENSIVO));
+        seleccion.agregarJugador(jorgeValdivia);
         seleccion.agregarJugador(new Jugador("Alexis", "Sánchez",7,Posicion.DELANTEROEXTREMO));
         seleccion.agregarJugador(new Jugador("Eduardo","Vargas",11,Posicion.DELANTERODEAREA));
         seleccion.agregarCuerpoTecnico(new DireccionTecnica("Reinaldo","Rueda",Ocupacion.ENTRENADOR));
@@ -107,10 +111,8 @@ public class EquipoTest {
 
     @Test
     public void buscarJugador() {
-        seleccion.buscarJugador(new Jugador("Jorge","Valdivia",10,Posicion.VOLANTEOFENSIVO));
-        Assert.assertTrue(true);
-        seleccion.buscarJugador(new Jugador("Marcelo","Salas",11,Posicion.DEFENSACENTRAL));
-        Assert.assertFalse(false);
+        Assert.assertTrue(seleccion.buscarJugador(jorgeValdivia));
+        Assert.assertFalse(seleccion.buscarJugador(marceloSalas));
     }
 
     @Test

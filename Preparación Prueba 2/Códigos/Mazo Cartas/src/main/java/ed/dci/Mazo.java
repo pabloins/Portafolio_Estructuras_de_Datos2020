@@ -1,40 +1,41 @@
 package ed.dci;
 
-import java.util.Stack;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Mazo {
 
-    private Stack<Carta> cartas;
+    private Set<Carta> cartas;
 
     public Mazo() {
-        this.cartas = new Stack<Carta>();
+        cartas = new HashSet<Carta>();
+    }
+
+    public Set<Carta> getCartas() {
+        return cartas;
+    }
+
+    public void setCartas(Set<Carta> cartas) {
+        this.cartas = cartas;
     }
 
     public boolean agregarCarta(Carta carta){
         return cartas.add(carta);
     }
 
-    public Carta getCarta(int i){
-        if(i < this.cartas.size()){
-            return this.cartas.get(i);
+    public boolean obtenerCarta(Carta carta){
+        if(cartas.isEmpty()){
+            throw new NullPointerException("No alcanzan las cartas");
         } else {
-            throw new IndexOutOfBoundsException("No alcanzan las cartas");
+            return getCartas().contains(carta);
         }
     }
 
-    public Carta deleteCarta(int i){
-        if(i < this.cartas.size()){
-            return this.cartas.remove(i);
+    public boolean deleteCarta(Carta carta){
+        if(cartas.isEmpty()){
+            throw new NullPointerException("No puedes eliminar esa carta porque no hay suficientes cartas");
         } else {
-            throw new IndexOutOfBoundsException("No puedes eliminar esa carta porque no hay suficientes cartas");
+            return getCartas().remove(carta);
         }
-    }
-
-    public Stack<Carta> getCartas() {
-        return cartas;
-    }
-
-    public void setCartas(Stack<Carta> cartas) {
-        this.cartas = cartas;
     }
 }
