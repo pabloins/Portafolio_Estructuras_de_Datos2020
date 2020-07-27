@@ -116,6 +116,12 @@ public class EquipoTest {
     }
 
     @Test
+    public void eliminarJugador(){
+        seleccion.eliminarJugador(jorgeValdivia);
+        Assert.assertFalse(seleccion.buscarJugador(jorgeValdivia));
+    }
+
+    @Test
     public void buscarJugadorVacio(){
         exceptionRule.expect(NullPointerException.class);
         exceptionRule.expectMessage("No hay jugadores");
