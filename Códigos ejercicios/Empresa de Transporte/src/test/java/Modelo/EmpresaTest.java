@@ -71,6 +71,12 @@ public class EmpresaTest {
     public ExpectedException exceptionRule = ExpectedException.none();
 
     @Test
+    public void revisionTest(){
+        assertEquals("Necesita mantención",empresa.revision(bus1.getKilometrajeAct(), bus1.getDiaFechaUltimaMantencion(), bus1.getMesFechaUltimaMantencion(), bus1.getAnioFechaUltimaMantencion()));
+        assertEquals("Esta al día",empresa.revision(camion3.getKilometrajeAct(),camion3.getDiaFechaUltimaMantencion(),camion3.getMesFechaUltimaMantencion(),camion3.getAnioFechaUltimaMantencion()));
+    }
+
+    @Test
     public void ordenarBusFecha() {
         final ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
