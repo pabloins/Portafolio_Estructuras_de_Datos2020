@@ -77,6 +77,13 @@ public class EmpresaTest {
     }
 
     @Test
+    public void revisionValoresNegativos(){
+        exceptionRule.expect(IndexOutOfBoundsException.class);
+        exceptionRule.expectMessage("No se aceptan valores negativos");
+        empresa.revision(-1233,-1,2,-12);
+    }
+
+    @Test
     public void ordenarBusFecha() {
         final ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
