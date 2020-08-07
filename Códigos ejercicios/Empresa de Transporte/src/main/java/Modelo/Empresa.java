@@ -31,8 +31,8 @@ public class Empresa implements Operaciones{
         }
     }
 
-    public void ordenarBusFecha(LinkedList<Bus> list){
-        if(list == null){
+    public void ordenarBusFecha(){
+        if(buses.isEmpty()){
             throw new NullPointerException("No hay buses en la lista");
         }
         Comparator<Bus> comparator
@@ -41,15 +41,15 @@ public class Empresa implements Operaciones{
                 .thenComparingInt(Bus::getAnioFechaUltimaMantencion)
                 .thenComparingInt(Bus::getMesFechaUltimaMantencion)
                 .thenComparingInt(Bus::getDiaFechaUltimaMantencion);
-        list.sort(comparator);
-        Iterator<Bus> Iterator = list.iterator();
+        buses.sort(comparator);
+        Iterator<Bus> Iterator = buses.iterator();
         while (Iterator.hasNext()){
             System.out.println(Iterator.next().toString());
         }
     }
 
-    public void ordenarCamionFecha(LinkedList<Camion> camiones){
-        if(camiones == null){
+    public void ordenarCamionFecha(){
+        if(camiones.isEmpty()){
             throw new NullPointerException("No hay camiones en la lista");
         }
         Comparator<Camion> comparator

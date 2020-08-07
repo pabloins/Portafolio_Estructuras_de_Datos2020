@@ -15,6 +15,7 @@ import static org.junit.Assert.assertEquals;
 public class EmpresaTest {
 
     Empresa empresa;
+    Empresa empresaVacio;
     Bus bus1;
     Bus bus2;
     Bus bus3;
@@ -30,6 +31,7 @@ public class EmpresaTest {
     @Before
     public void preparar() {
         empresa = new Empresa();
+        empresaVacio = new Empresa();
         fechaCompra = new Date(117, Calendar.APRIL,21);
         bus1 = new Bus("FN-YH-29","NMK898735",2,"MERCEDES BENZ",fechaCompra,110000,4000,21,7,2020,empresa.revision(110000,21,7,2020),TipoBus.TRANSPORTEDEPASAJEROS1);
         empresa.getBuses().add(bus1);
@@ -65,7 +67,6 @@ public class EmpresaTest {
                         "Camion{patente= LM-WW-18, chasis= KDJ887441, eje= 2, marca= VOLVO, fechaCompra= Fri Apr 06 00:00:00 CLST 2018, kilometrajeAct= 11000.0, kilometrajeManutencion= 23000.0, diaFechaUltimaMantencion= 6, mesFechaUltimaMantencion= 4, anioFechaUltimaMantencion =2018, estado= Necesita mantención, tipoCamion= TRANSPORTEDEALIMENTOS}\r\n" +
                         "Camion{patente= WW-AZ-56, chasis= JJJ637344, eje= 2, marca= SCANIA, fechaCompra= Mon Sep 09 00:00:00 CLST 2019, kilometrajeAct= 11000.0, kilometrajeManutencion= 5000.0, diaFechaUltimaMantencion= 19, mesFechaUltimaMantencion= 7, anioFechaUltimaMantencion =2020, estado= Esta al día, tipoCamion= TRANSPORTEDEALIMENTOS}\r\n";
     }
-
     @Rule
     public ExpectedException exceptionRule = ExpectedException.none();
 
@@ -73,15 +74,29 @@ public class EmpresaTest {
     public void ordenarBusFecha() {
         final ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
-        empresa.ordenarBusFecha(empresa.getBuses());
+        empresa.ordenarBusFecha();
         assertEquals(listaBuses, out.toString());
+    }
+
+    @Test
+    public void ordenarBusFechaVacio(){
+        exceptionRule.expect(NullPointerException.class);
+        exceptionRule.expectMessage("No hay buses en la lista");
+        empresaVacio.ordenarBusFecha();
     }
 
     @Test
     public void ordenarCamionFecha() {
         final ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
-        empresa.ordenarCamionFecha(empresa.getCamiones());
+        empresa.ordenarCamionFecha();
         assertEquals(listaCamiones, out.toString());
+    }
+
+    @Test
+    public void ordenarCamionFechaVacio(){
+        exceptionRule.expect(NullPointerException.class);
+        exceptionRule.expectMessage("No hay camiones en la lista");
+        empresaVacio.ordenarCamionFecha();
     }
 }
