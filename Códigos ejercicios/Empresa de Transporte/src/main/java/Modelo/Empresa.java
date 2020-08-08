@@ -20,18 +20,7 @@ public class Empresa implements Operaciones{
 
     public void setCamiones(LinkedList<Camion> camiones) { this.camiones = camiones; }
 
-    public String revision(double kilometros, int dias, int meses, int anios){
-        if(kilometros < 0 || dias < 0 || meses < 0 || anios < 0){
-            throw new IndexOutOfBoundsException("No se aceptan valores negativos");
-        }
-        if(revisionKilometros(kilometros) || revisionMeses(dias,meses,anios) || kilometros >  60000) {
-            return "Necesita mantención";
-        } else {
-            return "Esta al día";
-        }
-    }
-
-    public void ordenarBusFecha(){
+    public void ordenarBusFecha(LinkedList<Bus> buses){
         if(buses.isEmpty()){
             throw new NullPointerException("No hay buses en la lista");
         }
@@ -48,7 +37,7 @@ public class Empresa implements Operaciones{
         }
     }
 
-    public void ordenarCamionFecha(){
+    public void ordenarCamionFecha(LinkedList<Camion> camiones){
         if(camiones.isEmpty()){
             throw new NullPointerException("No hay camiones en la lista");
         }
@@ -93,5 +82,17 @@ public class Empresa implements Operaciones{
             diferencia--;
         }
         return diferencia;
+    }
+
+    @Override
+    public String revision(double kilometros, int dias, int meses, int anios){
+        if(kilometros < 0 || dias < 0 || meses < 0 || anios < 0){
+            throw new IndexOutOfBoundsException("No se aceptan valores negativos");
+        }
+        if(revisionKilometros(kilometros) || revisionMeses(dias,meses,anios)) {
+            return "Necesita mantención";
+        } else {
+            return "Esta al día";
+        }
     }
 }

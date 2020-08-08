@@ -6,8 +6,8 @@ public class Camion extends Vehiculo{
 
     private TipoCamion tipoCamion;
 
-    public Camion(String patente, String chasis, int eje, String marca, Date fechaCompra, double kilometrajeAct, double kilometrajeManutencion, int diaFechaUltimaMantencion, int mesFechaUltimaMantencion, int anioFechaUltimaMantencion, String estado, TipoCamion tipoCamion) {
-        super(patente, chasis, eje, marca, fechaCompra, kilometrajeAct, kilometrajeManutencion, diaFechaUltimaMantencion, mesFechaUltimaMantencion, anioFechaUltimaMantencion, estado);
+    public Camion(String patente, String chasis, int eje, String marca, Date fechaCompra, double kilometrajeAct, double kilometrajeManutencion, int diaFechaUltimaMantencion, int mesFechaUltimaMantencion, int anioFechaUltimaMantencion, TipoCamion tipoCamion) {
+        super(patente, chasis, eje, marca, fechaCompra, kilometrajeAct, kilometrajeManutencion, diaFechaUltimaMantencion, mesFechaUltimaMantencion, anioFechaUltimaMantencion);
         this.tipoCamion = tipoCamion;
     }
 
@@ -32,7 +32,6 @@ public class Camion extends Vehiculo{
                 ", diaFechaUltimaMantencion= " + diaFechaUltimaMantencion +
                 ", mesFechaUltimaMantencion= " + mesFechaUltimaMantencion +
                 ", anioFechaUltimaMantencion =" + anioFechaUltimaMantencion +
-                ", estado= " + estado +
                 ", tipoCamion= " + tipoCamion +
                 '}';
     }

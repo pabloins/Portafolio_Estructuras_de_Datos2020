@@ -14,9 +14,8 @@ public class Vehiculo {
     protected int diaFechaUltimaMantencion;
     protected int mesFechaUltimaMantencion;
     protected int anioFechaUltimaMantencion;
-    protected String estado;
 
-    public Vehiculo(String patente, String chasis, int eje, String marca, Date fechaCompra, double kilometrajeAct, double kilometrajeManutencion, int diaFechaUltimaMantencion, int mesFechaUltimaMantencion, int anioFechaUltimaMantencion, String estado) {
+    public Vehiculo(String patente, String chasis, int eje, String marca, Date fechaCompra, double kilometrajeAct, double kilometrajeManutencion, int diaFechaUltimaMantencion, int mesFechaUltimaMantencion, int anioFechaUltimaMantencion) {
         this.patente = patente;
         this.chasis = chasis;
         this.eje = eje;
@@ -27,7 +26,6 @@ public class Vehiculo {
         this.diaFechaUltimaMantencion = diaFechaUltimaMantencion;
         this.mesFechaUltimaMantencion = mesFechaUltimaMantencion;
         this.anioFechaUltimaMantencion = anioFechaUltimaMantencion;
-        this.estado = estado;
     }
 
     public String getPatente() {
@@ -108,13 +106,5 @@ public class Vehiculo {
 
     public void setAnioFechaUltimaMantencion(int anioFechaUltimaMantencion) {
         this.anioFechaUltimaMantencion = anioFechaUltimaMantencion;
-    }
-
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
     }
 }

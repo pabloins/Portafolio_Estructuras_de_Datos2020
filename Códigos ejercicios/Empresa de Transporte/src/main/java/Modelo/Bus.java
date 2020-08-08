@@ -6,8 +6,8 @@ public class Bus extends Vehiculo{
 
     private TipoBus tipoBus;
 
-    public Bus(String patente, String chasis, int eje, String marca, Date fechaCompra, double kilometrajeAct, double kilometrajeManutencion, int diaFechaUltimaMantencion, int mesFechaUltimaMantencion, int anioFechaUltimaMantencion, String estado, TipoBus tipoBus) {
-        super(patente, chasis, eje, marca, fechaCompra, kilometrajeAct, kilometrajeManutencion, diaFechaUltimaMantencion, mesFechaUltimaMantencion, anioFechaUltimaMantencion, estado);
+    public Bus(String patente, String chasis, int eje, String marca, Date fechaCompra, double kilometrajeAct, double kilometrajeManutencion, int diaFechaUltimaMantencion, int mesFechaUltimaMantencion, int anioFechaUltimaMantencion, TipoBus tipoBus) {
+        super(patente, chasis, eje, marca, fechaCompra, kilometrajeAct, kilometrajeManutencion, diaFechaUltimaMantencion, mesFechaUltimaMantencion, anioFechaUltimaMantencion);
         this.tipoBus = tipoBus;
     }
 
@@ -32,7 +32,6 @@ public class Bus extends Vehiculo{
                 ", diaFechaUltimaMantencion= " + diaFechaUltimaMantencion +
                 ", mesFechaUltimaMantencion= " + mesFechaUltimaMantencion +
                 ", anioFechaUltimaMantencion= " + anioFechaUltimaMantencion +
-                ", estado= " + estado +
                 ", tipoBus= " + tipoBus +
                 '}';
     }
