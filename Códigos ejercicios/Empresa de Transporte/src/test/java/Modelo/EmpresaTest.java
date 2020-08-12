@@ -9,6 +9,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.LinkedList;
 
 import static org.junit.Assert.assertEquals;
 
@@ -26,12 +27,19 @@ public class EmpresaTest {
     Camion camion4;
     Date fechaCompra;
     String listaBuses;
+    String listaBusesFiltroKm;
     String listaCamiones;
+    String listaCamionesAlDia;
+    String listaCamionesTipo;
+    LinkedList<Bus> buses;
+    LinkedList<Camion> camiones;
 
     @Before
     public void preparar() {
         empresa = new Empresa();
         empresaVacio = new Empresa();
+        buses = new LinkedList<>();
+        camiones = new LinkedList<>();
         fechaCompra = new Date(117, Calendar.APRIL,21);
         bus1 = new Bus("FN-YH-29","NMK898735",2,"MERCEDES BENZ",fechaCompra,110000,4000,21,7,2020, TipoBus.TRANSPORTEDEPASAJEROS1);
         empresa.getBuses().add(bus1);
@@ -60,33 +68,31 @@ public class EmpresaTest {
                      "Bus{patente= MH-ZP-18, chasis= PTG852853, eje=4, marca= MERCEDES BENZ, fechaCompra= Wed Dec 21 00:00:00 CLST 2016, kilometrajeAct= 85000.0, kilometrajeManutencion= 18000.0, diaFechaUltimaMantencion= 9, mesFechaUltimaMantencion= 12, anioFechaUltimaMantencion= 2015, tipoBus= TRANSPORTEDEENCOMIENDAS2}\r\n" +
                      "Bus{patente= LM-AS-32, chasis= MVB777254, eje=4, marca= SCANIA, fechaCompra= Thu Feb 28 00:00:00 CLST 2019, kilometrajeAct= 10000.0, kilometrajeManutencion= 15000.0, diaFechaUltimaMantencion= 19, mesFechaUltimaMantencion= 12, anioFechaUltimaMantencion= 2015, tipoBus= TRANSPORTEDEPASAJEROS2}\r\n" +
                      "Bus{patente= FN-YH-29, chasis= NMK898735, eje=2, marca= MERCEDES BENZ, fechaCompra= Fri Apr 21 00:00:00 CLST 2017, kilometrajeAct= 110000.0, kilometrajeManutencion= 4000.0, diaFechaUltimaMantencion= 21, mesFechaUltimaMantencion= 7, anioFechaUltimaMantencion= 2020, tipoBus= TRANSPORTEDEPASAJEROS1}\r\n";
+
+        listaBusesFiltroKm = "Bus{patente= GD-LZ-21, chasis= KHJ667261, eje=2, marca= MERCEDES BENZ, fechaCompra= Thu May 23 00:00:00 CLT 2019, kilometrajeAct= 50000.0, kilometrajeManutencion= 67000.0, diaFechaUltimaMantencion= 19, mesFechaUltimaMantencion= 12, anioFechaUltimaMantencion= 2013, tipoBus= TRANSPORTEDEENCOMIENDAS2}\r\n" +
+                             "Bus{patente= LM-AS-32, chasis= MVB777254, eje=4, marca= SCANIA, fechaCompra= Thu Feb 28 00:00:00 CLST 2019, kilometrajeAct= 10000.0, kilometrajeManutencion= 15000.0, diaFechaUltimaMantencion= 19, mesFechaUltimaMantencion= 12, anioFechaUltimaMantencion= 2015, tipoBus= TRANSPORTEDEPASAJEROS2}\r\n";
+
         listaCamiones = "Camion{patente= HI-OO-99, chasis= AAJF44411, eje= 2, marca= VOLVO, fechaCompra= Wed Mar 04 00:00:00 CLST 2015, kilometrajeAct= 11000.0, kilometrajeManutencion= 34000.0, diaFechaUltimaMantencion= 19, mesFechaUltimaMantencion= 12, anioFechaUltimaMantencion =2013, tipoCamion= TRANSPORTEDEALIMENTOS}\r\n" +
                         "Camion{patente= TYD-EF-32, chasis= KDD662311, eje= 2, marca= SCANIA, fechaCompra= Fri Mar 01 00:00:00 CLST 2013, kilometrajeAct= 11000.0, kilometrajeManutencion= 200000.0, diaFechaUltimaMantencion= 19, mesFechaUltimaMantencion= 12, anioFechaUltimaMantencion =2013, tipoCamion= TRANSPORTEDEALIMENTOS}\r\n" +
                         "Camion{patente= LM-WW-18, chasis= KDJ887441, eje= 2, marca= VOLVO, fechaCompra= Fri Apr 06 00:00:00 CLST 2018, kilometrajeAct= 11000.0, kilometrajeManutencion= 23000.0, diaFechaUltimaMantencion= 6, mesFechaUltimaMantencion= 4, anioFechaUltimaMantencion =2018, tipoCamion= TRANSPORTEDEALIMENTOS}\r\n" +
                         "Camion{patente= WW-AZ-56, chasis= JJJ637344, eje= 2, marca= SCANIA, fechaCompra= Mon Sep 09 00:00:00 CLST 2019, kilometrajeAct= 11000.0, kilometrajeManutencion= 5000.0, diaFechaUltimaMantencion= 19, mesFechaUltimaMantencion= 7, anioFechaUltimaMantencion =2020, tipoCamion= TRANSPORTEDEALIMENTOS}\r\n";
+
+        listaCamionesAlDia = "Camion{patente= WW-AZ-56, chasis= JJJ637344, eje= 2, marca= SCANIA, fechaCompra= Mon Sep 09 00:00:00 CLST 2019, kilometrajeAct= 11000.0, kilometrajeManutencion= 5000.0, diaFechaUltimaMantencion= 19, mesFechaUltimaMantencion= 7, anioFechaUltimaMantencion =2020, tipoCamion= TRANSPORTEDEALIMENTOS}\r\n";
+
+        listaCamionesTipo = "Camion{patente= HI-OO-99, chasis= AAJF44411, eje= 2, marca= VOLVO, fechaCompra= Wed Mar 04 00:00:00 CLST 2015, kilometrajeAct= 11000.0, kilometrajeManutencion= 34000.0, diaFechaUltimaMantencion= 19, mesFechaUltimaMantencion= 12, anioFechaUltimaMantencion =2013, tipoCamion= TRANSPORTEDEALIMENTOS}\r\n" +
+                            "Camion{patente= TYD-EF-32, chasis= KDD662311, eje= 2, marca= SCANIA, fechaCompra= Fri Mar 01 00:00:00 CLST 2013, kilometrajeAct= 11000.0, kilometrajeManutencion= 200000.0, diaFechaUltimaMantencion= 19, mesFechaUltimaMantencion= 12, anioFechaUltimaMantencion =2013, tipoCamion= TRANSPORTEDEALIMENTOS}\r\n" +
+                            "Camion{patente= LM-WW-18, chasis= KDJ887441, eje= 2, marca= VOLVO, fechaCompra= Fri Apr 06 00:00:00 CLST 2018, kilometrajeAct= 11000.0, kilometrajeManutencion= 23000.0, diaFechaUltimaMantencion= 6, mesFechaUltimaMantencion= 4, anioFechaUltimaMantencion =2018, tipoCamion= TRANSPORTEDEALIMENTOS}\r\n";
     }
 
     @Rule
     public ExpectedException exceptionRule = ExpectedException.none();
 
     @Test
-    public void revisionTest(){
-        assertEquals("Necesita mantención",empresa.revision(bus1.getKilometrajeAct(), bus1.getDiaFechaUltimaMantencion(), bus1.getMesFechaUltimaMantencion(), bus1.getAnioFechaUltimaMantencion()));
-        assertEquals("Esta al día",empresa.revision(camion3.getKilometrajeAct(),camion3.getDiaFechaUltimaMantencion(),camion3.getMesFechaUltimaMantencion(),camion3.getAnioFechaUltimaMantencion()));
-    }
-
-    @Test
-    public void revisionValoresNegativos(){
-        exceptionRule.expect(IndexOutOfBoundsException.class);
-        exceptionRule.expectMessage("No se aceptan valores negativos");
-        empresa.revision(-1233,-1,2,-12);
-    }
-
-    @Test
     public void ordenarBusFecha() {
         final ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
         empresa.ordenarBusFecha(empresa.getBuses());
+        empresa.mostrarListaBuses(empresa.getBuses());
         assertEquals(listaBuses, out.toString());
     }
 
@@ -98,10 +104,77 @@ public class EmpresaTest {
     }
 
     @Test
+    public void busAlDiaTest(){
+        final ByteArrayOutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+        empresa.busAlDia(bus1, buses);
+        empresa.busAlDia(bus2, buses);
+        empresa.busAlDia(bus3, buses);
+        empresa.busAlDia(bus4, buses);
+        empresa.mostrarListaBuses(buses);
+        assertEquals("", out.toString());
+    }
+
+    @Test
+    public void busAlDiaVacioTest(){
+        exceptionRule.expect(NullPointerException.class);
+        exceptionRule.expectMessage("No hay buses en la lista");
+        empresaVacio.busAlDia(bus1, buses);
+        empresaVacio.busAlDia(bus2, buses);
+        empresaVacio.busAlDia(bus3, buses);
+        empresaVacio.busAlDia(bus4, buses);
+    }
+
+    @Test
+    public void mantencionBusTipoTest(){
+        final ByteArrayOutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+        empresa.mantencionBusTipo(bus1, buses);
+        empresa.mantencionBusTipo(bus2, buses);
+        empresa.mantencionBusTipo(bus3, buses);
+        empresa.mantencionBusTipo(bus4, buses);
+        empresa.mostrarListaBuses(buses);
+        assertEquals(listaBuses, out.toString());
+    }
+
+    @Test
+    public void mantencionBusTipoVacioTest(){
+        exceptionRule.expect(NullPointerException.class);
+        exceptionRule.expectMessage("No hay buses en la lista");
+        empresaVacio.mantencionBusTipo(bus1, buses);
+        empresaVacio.mantencionBusTipo(bus2, buses);
+        empresaVacio.mantencionBusTipo(bus3, buses);
+        empresaVacio.mantencionBusTipo(bus4, buses);
+    }
+
+    @Test
+    public void busMantencionKilometrosTest(){
+        final ByteArrayOutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+        empresa.busMantencionKilometros(bus1, buses);
+        empresa.busMantencionKilometros(bus2, buses);
+        empresa.busMantencionKilometros(bus3, buses);
+        empresa.busMantencionKilometros(bus4, buses);
+        empresa.mostrarListaBuses(buses);
+        assertEquals(listaBusesFiltroKm, out.toString());
+    }
+
+    @Test
+    public void busMantencionKilometrosVacioTest(){
+        exceptionRule.expect(NullPointerException.class);
+        exceptionRule.expectMessage("No hay buses en la lista");
+        empresaVacio.busMantencionKilometros(bus1, buses);
+        empresaVacio.busMantencionKilometros(bus2, buses);
+        empresaVacio.busMantencionKilometros(bus3, buses);
+        empresaVacio.busMantencionKilometros(bus4, buses);
+    }
+
+    @Test
     public void ordenarCamionFecha() {
         final ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
         empresa.ordenarCamionFecha(empresa.getCamiones());
+        empresa.mostrarListaCamiones(empresa.getCamiones());
         assertEquals(listaCamiones, out.toString());
     }
 
@@ -110,5 +183,71 @@ public class EmpresaTest {
         exceptionRule.expect(NullPointerException.class);
         exceptionRule.expectMessage("No hay camiones en la lista");
         empresaVacio.ordenarCamionFecha(empresaVacio.getCamiones());
+    }
+
+    @Test
+    public void camionAlDiaTest(){
+        final ByteArrayOutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+        empresa.camionAlDia(camion1, camiones);
+        empresa.camionAlDia(camion2, camiones);
+        empresa.camionAlDia(camion3, camiones);
+        empresa.camionAlDia(camion4, camiones);
+        empresa.mostrarListaCamiones(camiones);
+        assertEquals(listaCamionesAlDia, out.toString());
+    }
+
+    @Test
+    public void camionAlDiaVacioTest(){
+        exceptionRule.expect(NullPointerException.class);
+        exceptionRule.expectMessage("No hay camiones en la lista");
+        empresaVacio.camionMantencionKilometros(camion1, camiones);
+        empresaVacio.camionMantencionKilometros(camion2, camiones);
+        empresaVacio.camionMantencionKilometros(camion3, camiones);
+        empresaVacio.camionMantencionKilometros(camion4, camiones);
+    }
+
+    @Test
+    public void mantencionCamionTipoTest(){
+        final ByteArrayOutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+        empresa.mantencionCamionTipo(camion1, camiones);
+        empresa.mantencionCamionTipo(camion2, camiones);
+        empresa.mantencionCamionTipo(camion3, camiones);
+        empresa.mantencionCamionTipo(camion4, camiones);
+        empresa.mostrarListaCamiones(camiones);
+        assertEquals(listaCamionesTipo, out.toString());
+    }
+
+    @Test
+    public void mantencionCamionTipoVacioTest(){
+        exceptionRule.expect(NullPointerException.class);
+        exceptionRule.expectMessage("No hay camiones en la lista");
+        empresaVacio.mantencionCamionTipo(camion1, camiones);
+        empresaVacio.mantencionCamionTipo(camion2, camiones);
+        empresaVacio.mantencionCamionTipo(camion3, camiones);
+        empresaVacio.mantencionCamionTipo(camion4, camiones);
+    }
+
+    @Test
+    public void camionMantencionKilometrosTest(){
+        final ByteArrayOutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+        empresa.camionMantencionKilometros(camion1, camiones);
+        empresa.camionMantencionKilometros(camion2, camiones);
+        empresa.camionMantencionKilometros(camion3, camiones);
+        empresa.camionMantencionKilometros(camion4, camiones);
+        empresa.mostrarListaCamiones(camiones);
+        assertEquals(listaCamiones, out.toString());
+    }
+
+    @Test
+    public void camionMantencionKilometrosVacioTest(){
+        exceptionRule.expect(NullPointerException.class);
+        exceptionRule.expectMessage("No hay camiones en la lista");
+        empresaVacio.camionMantencionKilometros(camion1, camiones);
+        empresaVacio.camionMantencionKilometros(camion2, camiones);
+        empresaVacio.camionMantencionKilometros(camion3, camiones);
+        empresaVacio.camionMantencionKilometros(camion4, camiones);
     }
 }

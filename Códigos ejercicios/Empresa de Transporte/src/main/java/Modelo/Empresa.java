@@ -29,11 +29,53 @@ public class Empresa implements Operaciones{
                 .comparing(Bus::getAnioFechaUltimaMantencion)
                 .thenComparingInt(Bus::getAnioFechaUltimaMantencion)
                 .thenComparingInt(Bus::getMesFechaUltimaMantencion)
-                .thenComparingInt(Bus::getDiaFechaUltimaMantencion);
+                .thenComparingInt(Bus::getDiaFechaUltimaMantencion)
+                .thenComparing(Bus::getTipoBus);
         buses.sort(comparator);
-        Iterator<Bus> Iterator = buses.iterator();
-        while (Iterator.hasNext()){
-            System.out.println(Iterator.next().toString());
+    }
+
+    public void busAlDia(Bus bus, LinkedList<Bus> list){
+        if(buses.isEmpty()){
+            throw new NullPointerException("No hay buses en la lista");
+        }
+        if(buses.contains(bus)){
+            if(revision(bus.getKilometrajeAct()
+                    ,bus.getDiaFechaUltimaMantencion()
+                    ,bus.getMesFechaUltimaMantencion(),bus.getAnioFechaUltimaMantencion()).equals("Esta al día")){
+                list.add(bus);
+                ordenarBusFecha(list);
+            }
+        }
+    }
+
+    public void mantencionBusTipo(Bus bus, LinkedList<Bus> list){
+        if(buses.isEmpty()){
+            throw new NullPointerException("No hay buses en la lista");
+        }
+        if (buses.contains(bus)){
+            if(revision(bus.getKilometrajeAct()
+                    ,bus.getDiaFechaUltimaMantencion()
+                    ,bus.getMesFechaUltimaMantencion(),bus.getAnioFechaUltimaMantencion()).equals("Necesita mantención")){
+                list.add(bus);
+                ordenarBusFecha(list);
+            }
+        }
+    }
+
+    public void busMantencionKilometros(Bus bus, LinkedList<Bus> list){
+        if(buses.isEmpty()){
+            throw new NullPointerException("No hay buses en la lista");
+        }
+        if (buses.contains(bus)){
+            if(revision(bus.getKilometrajeAct()
+                    ,bus.getDiaFechaUltimaMantencion()
+                    ,bus.getMesFechaUltimaMantencion()
+                    ,bus.getAnioFechaUltimaMantencion()).equals("Necesita mantención")){
+                    if(bus.getKilometrajeAct() < 60000){
+                        list.add(bus);
+                        ordenarBusFecha(list);
+                }
+            }
         }
     }
 
@@ -48,16 +90,56 @@ public class Empresa implements Operaciones{
                 .thenComparingInt(Camion::getMesFechaUltimaMantencion)
                 .thenComparingInt(Camion::getDiaFechaUltimaMantencion);
         camiones.sort(comparator);
-        Iterator<Camion> Iterator = camiones.iterator();
-        while (Iterator.hasNext()){
-            System.out.println(Iterator.next().toString());
+    }
+
+    public void camionAlDia(Camion camion, LinkedList<Camion> list){
+        if(camiones.isEmpty()){
+            throw new NullPointerException("No hay camiones en la lista");
+        }
+        if(camiones.contains(camion)){
+            if(revision(camion.getKilometrajeAct()
+                    ,camion.getDiaFechaUltimaMantencion()
+                    ,camion.getMesFechaUltimaMantencion()
+                    ,camion.getAnioFechaUltimaMantencion()).equals("Esta al día")){
+                list.add(camion);
+                ordenarCamionFecha(list);
+            }
+        }
+    }
+
+    public void mantencionCamionTipo(Camion camion, LinkedList<Camion> list){
+        if(camiones.isEmpty()){
+            throw new NullPointerException("No hay camiones en la lista");
+        }
+        if (camiones.contains(camion)){
+            if(revision(camion.getKilometrajeAct()
+                    ,camion.getDiaFechaUltimaMantencion()
+                    ,camion.getMesFechaUltimaMantencion()
+                    ,camion.getAnioFechaUltimaMantencion()).equals("Necesita mantención")){
+                list.add(camion);
+                ordenarCamionFecha(list);
+            }
+        }
+    }
+
+    public void camionMantencionKilometros(Camion camion, LinkedList<Camion> list){
+        if(camiones.isEmpty()){
+            throw new NullPointerException("No hay camiones en la lista");
+        }
+        if (camiones.contains(camion)){
+            if(revision(camion.getKilometrajeAct()
+                    ,camion.getDiaFechaUltimaMantencion()
+                    ,camion.getMesFechaUltimaMantencion()
+                    ,camion.getAnioFechaUltimaMantencion()).equals("Necesita mantención")
+                    || camion.getKilometrajeAct() < 60000){
+                list.add(camion);
+                ordenarCamionFecha(list);
+            }
         }
     }
 
     @Override
-    public boolean revisionKilometros(double kilometraje) {
-        return kilometraje > 15000;
-    }
+    public boolean revisionKilometros(double kilometraje) { return kilometraje > 15000; }
 
     @Override
     public boolean revisionMeses(int dia, int mes, int anio) {
@@ -93,6 +175,20 @@ public class Empresa implements Operaciones{
             return "Necesita mantención";
         } else {
             return "Esta al día";
+        }
+    }
+
+    @Override
+    public void mostrarListaBuses(LinkedList<Bus> list) {
+        for (Bus bus : list) {
+            System.out.println(bus.toString());
+        }
+    }
+
+    @Override
+    public void mostrarListaCamiones(LinkedList<Camion> list) {
+        for (Camion camion : list) {
+            System.out.println(camion.toString());
         }
     }
 }
