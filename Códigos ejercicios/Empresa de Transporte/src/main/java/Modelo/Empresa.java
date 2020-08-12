@@ -20,6 +20,10 @@ public class Empresa implements Operaciones{
 
     public void setCamiones(LinkedList<Camion> camiones) { this.camiones = camiones; }
 
+    /**
+     * Método que se encarga de ordenar la lista buses por las fechas.
+     * @param buses lista que hay que ordenar.
+     * */
     public void ordenarBusFecha(LinkedList<Bus> buses){
         if(buses.isEmpty()){
             throw new NullPointerException("No hay buses en la lista");
@@ -34,6 +38,12 @@ public class Empresa implements Operaciones{
         buses.sort(comparator);
     }
 
+    /**
+     * Método que se encarga de comprobar si un bus esta dentro de la lista buses y verificar si esta al día
+     * luego se agrega en una lista para mostrar los buses al día.
+     * @param bus bus que hay que comprobar.
+     * @param list lista que muestra buses al día.
+     * */
     public void busAlDia(Bus bus, LinkedList<Bus> list){
         if(buses.isEmpty()){
             throw new NullPointerException("No hay buses en la lista");
@@ -48,6 +58,12 @@ public class Empresa implements Operaciones{
         }
     }
 
+    /**
+     * Método que se encarga de comprobar si un bus esta dentro de la lista y verificar si necesita mantención
+     * luego se agrega en una lista para mostrar los buses que necesitan mantención ordenadas por tipo.
+     * @param bus bus que hay que comprobar.
+     * @param list lista que muestra los buses que necesitan mantención.
+     * */
     public void mantencionBusTipo(Bus bus, LinkedList<Bus> list){
         if(buses.isEmpty()){
             throw new NullPointerException("No hay buses en la lista");
@@ -62,6 +78,13 @@ public class Empresa implements Operaciones{
         }
     }
 
+    /**
+     * Método que se encarga de comprobar si un bus esta dentro de la lista y verificar si necesita mantención
+     * luego se agrega en una lista para mostrar los buses que necesitan mantención solo si tienen menos de 60000 km
+     * de su kilometraje actual.
+     * @param bus bus que hay que comporbar.
+     * @param list lista que muestra los buses que necesitan mantención y si tienen menos de 60000 km de su kilometraje actual.
+     * */
     public void busMantencionKilometros(Bus bus, LinkedList<Bus> list){
         if(buses.isEmpty()){
             throw new NullPointerException("No hay buses en la lista");
@@ -79,6 +102,10 @@ public class Empresa implements Operaciones{
         }
     }
 
+    /**
+     * Método que se encarga de ordenar la lista camiones por las fechas.
+     * @param camiones lista que hay que ordenar.
+     * */
     public void ordenarCamionFecha(LinkedList<Camion> camiones){
         if(camiones.isEmpty()){
             throw new NullPointerException("No hay camiones en la lista");
@@ -92,6 +119,12 @@ public class Empresa implements Operaciones{
         camiones.sort(comparator);
     }
 
+    /**
+     * Método que se encarga de comprobar si un camion esta dentro de la lista camion y verificar si esta al día
+     * luego se agrega en una lista para mostrar los camiones al día.
+     * @param camion camion que hay que comprobar.
+     * @param list lista que muestra camiones al día.
+     * */
     public void camionAlDia(Camion camion, LinkedList<Camion> list){
         if(camiones.isEmpty()){
             throw new NullPointerException("No hay camiones en la lista");
@@ -107,6 +140,12 @@ public class Empresa implements Operaciones{
         }
     }
 
+    /**
+     * Método que se encarga de comprobar si un camion esta dentro de la lista y verificar si necesita mantención
+     * luego se agrega en una lista para mostrar los camiones que necesitan mantención ordenadas por tipo.
+     * @param camion camion que hay que comprobar.
+     * @param list lista que muestra los camiones que necesitan mantención.
+     * */
     public void mantencionCamionTipo(Camion camion, LinkedList<Camion> list){
         if(camiones.isEmpty()){
             throw new NullPointerException("No hay camiones en la lista");
@@ -122,6 +161,13 @@ public class Empresa implements Operaciones{
         }
     }
 
+    /**
+     * Método que se encarga de comprobar si un camion esta dentro de la lista y verificar si necesita mantención
+     * luego se agrega en una lista para mostrar los camiones que necesitan mantención solo si tienen menos de 60000 km
+     * de su kilometraje actual.
+     * @param camion bus que hay que comporbar.
+     * @param list lista que muestra los camiones que necesitan mantención y si tienen menos de 60000 km de su kilometraje actual.
+     * */
     public void camionMantencionKilometros(Camion camion, LinkedList<Camion> list){
         if(camiones.isEmpty()){
             throw new NullPointerException("No hay camiones en la lista");
