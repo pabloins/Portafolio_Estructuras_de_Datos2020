@@ -5,6 +5,7 @@ public class ArbolBinario {
     public ArbolBinario() { this.root = null; }
 
     /**
+     * EJERCICIO 1
      * Método que busca un nodo dentro del árbol binario en pre orden.
      * @param nodo nodo que hay que encontrar.
      * @param value valor del nodo a encontrar.
@@ -28,8 +29,9 @@ public class ArbolBinario {
     }
 
     /**
+     * EJERCICIO 2
      * Método que comprueba si un árbol binario es lleno.
-     * @param nodo raíz del árbol que hay que comprobar.
+     * @param nodo árbol que hay que comprobar.
      * @return retorna un true o false comrobando el árbol binario.
      * */
     public boolean comprobarArbolLleno(Nodo nodo){
@@ -42,6 +44,30 @@ public class ArbolBinario {
             }
         }
         return false;
+    }
+
+    /**
+     * EJERCICIO 3
+     * Método que entrega el nivel de un árbol binario.
+     * @param nodo árbol que hay que analizar.
+     * @return retorna un entero con el valor del nivel del árbol.
+     * */
+    public int obtenerNivel(Nodo nodo){
+        if(nodo != null){
+            return 1 + Math.max(obtenerNivel(nodo.leftChild), obtenerNivel(nodo.rightChild));
+        }
+        return 0;
+    }
+
+    /**
+     * EJERCICIO 4
+     * Método donde entrega el valor más grande en cada nivel de un árbol binario.
+     * @param nodo árbol que hay que analizar.
+     * */
+    public void obtenerValorMaxNivel(Nodo nodo){
+        if(nodo != null){
+            //COMPLETAR
+        } else throw new NullPointerException("El árbol no existe");
     }
 
     /**
@@ -61,27 +87,33 @@ public class ArbolBinario {
     }
 
     /**
-     * Método que recorre un árbol binario.
+     * Dado un árbol binario, imprime sus nodos en En Orden
      * */
-    public void recorrer(Nodo nodo){
-        if (nodo == null)
-            return;
+    public void imprimirEnOrden(Nodo node) {
+        if (node == null) return;
 
         /* primero el nodo izquierdo*/
-        recorrer(nodo.leftChild);
+        imprimirEnOrden(node.leftChild);
+
+        /* luego imprimir el valor del nodo*/
+        System.out.print(node.value + " ");
 
         /* luego el nodo  derecho */
-        recorrer(nodo.rightChild);
+        imprimirEnOrden(node.rightChild);
     }
 
     /**
-     * Método que Inserta un nodo con determinado valor.
+     * Método que inserta un nodo con determinado valor.
+     * @param value entero que corresponde al valor del nodo que se va a ingresar.
      * */
-    public void insertar(int value){
-        root = agregarNodo(root,value);
-    }
+    public void insertar(int value){ root = agregarNodo(root,value); }
 
-    //Define la posición donde se insertará el nodo
+    /**
+     * Método privado que define la posición donde se insertará el nodo.
+     * @param actual nodo que hay que ingresar al árbol.
+     * @param valor entero que corresponde al valor del nodo que se va a ingresar.
+     * @return retorna el árbol.
+     * */
     private Nodo agregarNodo(Nodo actual, int valor){
         if (actual==null) actual = new Nodo(valor); //agrega nodo cuando es hoja
         else if (valor < actual.value) actual.leftChild = agregarNodo(actual.leftChild,valor); //recorre lado izquiero para agregar

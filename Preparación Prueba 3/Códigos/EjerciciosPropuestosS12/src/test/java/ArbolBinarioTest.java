@@ -1,3 +1,5 @@
+import org.junit.rules.ExpectedException;
+
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
@@ -8,6 +10,9 @@ public class ArbolBinarioTest {
     ArbolBinario arbolBinario;
     ArbolBinario arbolBinario1;
     ArbolBinario arbolBinario2;
+    ArbolBinario arbolBinario3;
+    ArbolBinario arbolBinario4;
+    ArbolBinario arbolBinarioVacio;
     String arbolEnPreOrden;
 
     @org.junit.Before
@@ -31,7 +36,23 @@ public class ArbolBinarioTest {
         arbolBinario2.insertar(100);
         arbolBinario2.insertar(110);
         arbolBinario2.insertar(90);
+
+        arbolBinario3 = new ArbolBinario();
+        arbolBinario3.insertar(100);
+
+        arbolBinario4 = new ArbolBinario();
+        arbolBinario4.insertar(4);
+        arbolBinario4.insertar(9);
+        arbolBinario4.insertar(11);
+        arbolBinario4.insertar(3);
+        arbolBinario4.insertar(5);
+        arbolBinario4.insertar(7);
+
+        arbolBinarioVacio = new ArbolBinario();
     }
+
+    @org.junit.Rule
+    public ExpectedException exceptionRule = ExpectedException.none();
 
     @org.junit.Test
     public void buscar() {
@@ -57,5 +78,21 @@ public class ArbolBinarioTest {
         assertTrue(arbolBinario.comprobarArbolLleno(arbolBinario.root));
         assertFalse(arbolBinario1.comprobarArbolLleno(arbolBinario1.root));
         assertTrue(arbolBinario2.comprobarArbolLleno(arbolBinario2.root));
+    }
+
+    @org.junit.Test
+    public void obtenerNivel(){
+        assertEquals(3, arbolBinario.obtenerNivel(arbolBinario.root));
+        assertEquals(2, arbolBinario1.obtenerNivel(arbolBinario1.root));
+        assertEquals(2, arbolBinario2.obtenerNivel(arbolBinario2.root));
+        assertEquals(1, arbolBinario3.obtenerNivel(arbolBinario3.root));
+    }
+
+    @org.junit.Test
+    public void obtenerValorMaxNivel(){
+        exceptionRule.expect(NullPointerException.class);
+        exceptionRule.expectMessage("El árbol no existe");
+        arbolBinarioVacio.obtenerValorMaxNivel(arbolBinarioVacio.root);
+
     }
 }
