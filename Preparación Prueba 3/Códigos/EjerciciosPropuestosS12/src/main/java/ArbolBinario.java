@@ -17,7 +17,7 @@ public class ArbolBinario {
         if(nodo.value == value){
             return true;
             //Caso: el valor del nodo es mayor que el que se busca,
-            //el nodo debe sestar en el sub árbol izquierdo
+            //el nodo debe estar en el sub árbol izquierdo
         } else if(nodo.value > value){
             return buscar(nodo.leftChild, value);
         } else {
@@ -33,12 +33,15 @@ public class ArbolBinario {
      * @return retorna un true o false comrobando el árbol binario.
      * */
     public boolean comprobarArbolLleno(Nodo nodo){
-        //Caso: la raíz del árbol es null
-        if(nodo == null) return false;
-        //Caso: la raíz del arbol exista
-        else return false;
-        //Caso: si cada nodo es una hoja
-        //COMPLETAR!!
+        if (nodo!=null) {
+            if(nodo.rightChild == null && nodo.leftChild == null) {
+                return true;
+            }
+            if ((nodo.rightChild != null && nodo.leftChild != null)) {
+                return comprobarArbolLleno(nodo.leftChild)&&comprobarArbolLleno(nodo.rightChild);
+            }
+        }
+        return false;
     }
 
     /**
@@ -55,6 +58,20 @@ public class ArbolBinario {
 
         /* luego el nodo  derecho */
         imprimirEnPreOrden(nodo.rightChild);
+    }
+
+    /**
+     * Método que recorre un árbol binario.
+     * */
+    public void recorrer(Nodo nodo){
+        if (nodo == null)
+            return;
+
+        /* primero el nodo izquierdo*/
+        recorrer(nodo.leftChild);
+
+        /* luego el nodo  derecho */
+        recorrer(nodo.rightChild);
     }
 
     /**

@@ -1,16 +1,17 @@
-import org.junit.Before;
-
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import static org.junit.Assert.*;
 
 public class ArbolBinarioTest {
+
     ArbolBinario arbolBinario;
+    ArbolBinario arbolBinario1;
+    ArbolBinario arbolBinario2;
     String arbolEnPreOrden;
 
     @org.junit.Before
-    public void setUp() throws Exception {
+    public void preparar() {
         arbolBinario = new ArbolBinario();
         arbolBinario.insertar(50);
         arbolBinario.insertar(30);
@@ -21,6 +22,15 @@ public class ArbolBinarioTest {
         arbolBinario.insertar(80);
 
         arbolEnPreOrden = "50 30 20 40 70 60 80 ";
+
+        arbolBinario1 = new ArbolBinario();
+        arbolBinario1.insertar(100);
+        arbolBinario1.insertar(120);
+
+        arbolBinario2 = new ArbolBinario();
+        arbolBinario2.insertar(100);
+        arbolBinario2.insertar(110);
+        arbolBinario2.insertar(90);
     }
 
     @org.junit.Test
@@ -44,6 +54,8 @@ public class ArbolBinarioTest {
 
     @org.junit.Test
     public void comprobarArbolLleno(){
-
+        assertTrue(arbolBinario.comprobarArbolLleno(arbolBinario.root));
+        assertFalse(arbolBinario1.comprobarArbolLleno(arbolBinario1.root));
+        assertTrue(arbolBinario2.comprobarArbolLleno(arbolBinario2.root));
     }
 }
