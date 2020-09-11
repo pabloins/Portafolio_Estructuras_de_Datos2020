@@ -1,5 +1,3 @@
-import org.junit.rules.ExpectedException;
-
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
@@ -12,8 +10,10 @@ public class ArbolBinarioTest {
     ArbolBinario arbolBinario2;
     ArbolBinario arbolBinario3;
     ArbolBinario arbolBinario4;
-    ArbolBinario arbolBinarioVacio;
     String arbolEnPreOrden;
+    String valoresMaximos;
+    String valoresMaximos1;
+    String valoresMaximos2;
 
     @org.junit.Before
     public void preparar() {
@@ -48,11 +48,10 @@ public class ArbolBinarioTest {
         arbolBinario4.insertar(5);
         arbolBinario4.insertar(7);
 
-        arbolBinarioVacio = new ArbolBinario();
+        valoresMaximos = "50 70 80 ";
+        valoresMaximos1 = "100 120 ";
+        valoresMaximos2 = "4 9 11 ";
     }
-
-    @org.junit.Rule
-    public ExpectedException exceptionRule = ExpectedException.none();
 
     @org.junit.Test
     public void buscar() {
@@ -90,9 +89,19 @@ public class ArbolBinarioTest {
 
     @org.junit.Test
     public void obtenerValorMaxNivel(){
-        exceptionRule.expect(NullPointerException.class);
-        exceptionRule.expectMessage("El árbol no existe");
-        arbolBinarioVacio.obtenerValorMaxNivel(arbolBinarioVacio.root);
+        final ByteArrayOutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+        arbolBinario.obtenerValorMaxNivel(arbolBinario.root);
+        assertEquals(valoresMaximos,out.toString());
 
+        final ByteArrayOutputStream out1 = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out1));
+        arbolBinario1.obtenerValorMaxNivel(arbolBinario1.root);
+        assertEquals(valoresMaximos1, out1.toString());
+
+        final ByteArrayOutputStream out2 = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out2));
+        arbolBinario4.obtenerValorMaxNivel(arbolBinario4.root);
+        assertEquals(valoresMaximos2, out2.toString());
     }
 }

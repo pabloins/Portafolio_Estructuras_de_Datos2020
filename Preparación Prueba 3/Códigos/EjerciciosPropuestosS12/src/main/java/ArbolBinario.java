@@ -65,9 +65,10 @@ public class ArbolBinario {
      * @param nodo árbol que hay que analizar.
      * */
     public void obtenerValorMaxNivel(Nodo nodo){
-        if(nodo != null){
-            //COMPLETAR
-        } else throw new NullPointerException("El árbol no existe");
+        if(nodo == null) return;
+        System.out.print(nodo.value + " ");
+        if (nodo.rightChild != null) obtenerValorMaxNivel(nodo.rightChild);
+        else obtenerValorMaxNivel(nodo.leftChild);
     }
 
     /**
@@ -84,22 +85,6 @@ public class ArbolBinario {
 
         /* luego el nodo  derecho */
         imprimirEnPreOrden(nodo.rightChild);
-    }
-
-    /**
-     * Dado un árbol binario, imprime sus nodos en En Orden
-     * */
-    public void imprimirEnOrden(Nodo node) {
-        if (node == null) return;
-
-        /* primero el nodo izquierdo*/
-        imprimirEnOrden(node.leftChild);
-
-        /* luego imprimir el valor del nodo*/
-        System.out.print(node.value + " ");
-
-        /* luego el nodo  derecho */
-        imprimirEnOrden(node.rightChild);
     }
 
     /**

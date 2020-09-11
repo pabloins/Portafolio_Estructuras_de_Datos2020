@@ -52,6 +52,16 @@ public class Establecimiento {
         this.listaEsperaEstudiantes.add(new Estudiante(nombre, direccion, rut, fechaIncorporacion, promedio));
     }
 
+    public ArrayList<Estudiante> listarEstudiantesMayorAPromedio(double promedio){
+        ArrayList<Estudiante> estudiantesListados = new ArrayList<Estudiante>();
+        for(Estudiante estudiante:this.estudiantes){
+            if (estudiante.getPromedio() >= promedio){
+                estudiantesListados.add(estudiante);
+            }
+        }
+        return estudiantesListados;
+    }
+
     public static void imprimirEstudiantes(Stack<Estudiante> estudiantes, Queue<Estudiante> listaEsperaEstudiantes){
         if(estudiantes == null){
             throw new NullPointerException();
